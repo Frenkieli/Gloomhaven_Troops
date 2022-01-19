@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build & next export",
+    "gitBuild": "next build",
     "export": "next export",
     "start": "next start",
     "lint": "next lint"

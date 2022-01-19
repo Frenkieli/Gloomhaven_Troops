@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 
 import { prefix } from '../prefix';
 
@@ -61,7 +61,10 @@ export default function Home() {
         >
           Powered by{' '}
           <span className={styles.logo}>
-            <img src={ prefix + "/vercel.svg"} alt="Vercel Logo" width={72} height={16} />
+            <img 
+              src={ prefix + "/vercel.svg"}
+              alt="logo"
+            />
           </span>
         </a>
       </footer>

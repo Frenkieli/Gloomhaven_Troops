@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      NEXT_PUBLIC_BASE_PATH: /YOUR_REPOSITORY
+      NEXT_PUBLIC_BASE_PATH: /Gloomhaven_Troops
 
     strategy:
       matrix:

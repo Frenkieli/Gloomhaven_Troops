@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+import { prefix } from '../prefix';
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -59,7 +61,7 @@ export default function Home() {
         >
           Powered by{' '}
           <span className={styles.logo}>
-            <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            <img src={ prefix + "/vercel.svg"} alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>

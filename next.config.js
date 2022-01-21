@@ -4,10 +4,10 @@ let config = {
   reactStrictMode: true,
 };
 
-if (process.env.NEXT_PUBLIC_BASE_PATH) {
+if (process.env.NEXT_PUBLIC_URL) {
   config.images = {
     loader: "imgix",
-    path: process.env.NEXT_PUBLIC_BASE_PATH,
+    path: process.env.NEXT_PUBLIC_URL,
   };
 }
 

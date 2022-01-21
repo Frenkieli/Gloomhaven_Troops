@@ -10,6 +10,7 @@ jobs:
 
     env:
       NEXT_PUBLIC_BASE_PATH: /Gloomhaven_Troops
+      NEXT_PUBLIC_URL: https://frenkieli.github.io/Gloomhaven_Troops/
 
     strategy:
       matrix:

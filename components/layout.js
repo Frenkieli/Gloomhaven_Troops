@@ -1,5 +1,5 @@
 import Head from "next/head";
-// import Image from "next/image";
+import Image from "next/image";
 import styles from "./layout.module.scss";
 import utilStyles from "../styles/utils.module.scss";
 import Link from "next/link";
@@ -28,7 +28,7 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
-            <img
+            <Image
               priority
               src="/images/profile.jpg"
               className={utilStyles.borderCircle}
@@ -42,7 +42,7 @@ export default function Layout({ children, home }) {
           <>
             <Link href="/">
               <a>
-                <img
+                <Image
                   priority
                   src="/images/profile.jpg"
                   className={utilStyles.borderCircle}

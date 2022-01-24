@@ -27,6 +27,7 @@ export default function Post({ characterData }) {
         <meta property="og:image" content={ 'https://frenkieli.github.io/Gloomhaven_Troops/images/' + characterData.class + '/icon.png' }/>
         <meta property="og:description" content={characterData.description} />
         <meta property="og:site_name" content="幽港迷城冒險紀錄" />
+        <meta property="fb:app_id" content="674189663950207" />
       </Head>
       {JSON.stringify(characterData)}
     </>

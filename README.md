@@ -1,37 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 幽港迷城冒險紀錄
 
-## Getting Started
+## 開發說明
 
-First, run the development server:
+該專案是用來練習 nextjs 的專案，需注意該專案必須要能在關閉 js 的情況下亦能正常出現資料
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### 進行故事時間線
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1   2   | 3   4  |  5   6   7    | 8     9     10   |
+#1  #2  | #4  #5 |  #3  #6  #52  | #53   #54   #14  |
+    A   |        |               |       B     C    |
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+A 鈴牛隊長 => 我日 執法者 打惡徒
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+B 棘 => 銀 索恩的追尋者 跑任務線
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+C 夜德 => ?? 道具店店長 買大量物品
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-google 圖表網址如下
-https://docs.google.com/spreadsheets/d/1aej2XI8fkEc1VAFdFR5tamvYqMEBEDmMWd1V9HDkoT8/edit#gid=0
+D 愛庭 => ?? 祈禱12次
+  銀 => ?? 幫助隊友退休 2 次

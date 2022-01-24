@@ -17,7 +17,12 @@ class MyDocument extends Document {
         lang="zh-tw"
         className="bg-orange-300"
       >
-        <Head prefix="my_namespace: https://ogp.me/ns/article#"/>
+        <Head prefix="my_namespace: https://ogp.me/ns/article#">
+          <link
+            href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

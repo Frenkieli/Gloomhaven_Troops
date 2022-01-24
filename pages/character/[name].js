@@ -11,9 +11,9 @@ export default function Post({ characterData }) {
     <>
       <Head>
         {/* header icon */}
-        <link rel="shortcut icon" href={ '/images/' + characterData.class + '/icon.png' }/>
+        <link rel="shortcut icon" href={ 'https://frenkieli.github.io/Gloomhaven_Troops/images/' + characterData.class + '/icon.png' }/>
         {/* 手機用 icon -precomposed 意思是說不要反光*/}
-        <link rel="apple-touch-icon-precomposed" sizes="192x192" href={ 'https://frenkieli.github.io/Gloomhaven_Troops/images/' + characterData.class + '/icon.png' }/>
+        <link rel="apple-touch-icon-precomposed" sizes="192x192" href='https://frenkieli.github.io/Gloomhaven_Troops/images/icon.png'/>
         <title>{characterData.name + '：冒險紀錄－幽港迷城'}</title>
         <meta name="author" content="驢子"/>
         <meta name="copyright" content="驢形工作室"/>
@@ -30,7 +30,6 @@ export default function Post({ characterData }) {
         <meta property="og:site_name" content="冒險紀錄－幽港迷城" />
         <meta property="fb:app_id" content="674189663950207" />
       </Head>
-      {JSON.stringify(characterData)}
     </>
   );
 }

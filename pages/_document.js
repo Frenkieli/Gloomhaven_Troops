@@ -17,7 +17,7 @@ class MyDocument extends Document {
         lang="zh-tw"
         className="bg-orange-300"
       >
-        <Head />
+        <Head prefix="my_namespace: https://ogp.me/ns/article#"/>
         <body>
           <Main />
           <NextScript />

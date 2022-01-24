@@ -41,7 +41,7 @@ export default function Post({
         <meta property="fb:app_id" content={app_id} />
       </Head>
       <div 
-        className="w-screen h-screen bg-no-repeat bg-cover bg-center box-border p-2"
+        className="w-full h-screen overflow-auto bg-no-repeat bg-cover bg-center box-border p-2 select-none"
         style={{
           backgroundImage: "url(" + siteUrl + "/images/" + characterData.class + "/background.jpg" + ")"
         }}

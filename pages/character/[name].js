@@ -23,7 +23,7 @@ export default function Post({ characterData }) {
         <meta property="og:title" content={characterData.name + '的冒險紀錄'}/>
         <meta property="og:type" content="article"/>
         <meta property="article:section" content={characterData.name}/>
-        <meta property="og:url" content={"https://frenkieli.github.io/Gloomhaven_Troops/character/" + characterData.name}/>
+        <meta property="og:url" content={"https://www.facebook.com/lyumage"}/>
         <meta property="og:image" content={ 'https://frenkieli.github.io/Gloomhaven_Troops/images/' + characterData.class + '/icon.png' }/>
         <meta property="og:description" content={characterData.description} />
         <meta property="og:site_name" content="幽港迷城冒險紀錄" />

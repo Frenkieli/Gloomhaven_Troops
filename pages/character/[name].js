@@ -3,7 +3,7 @@ import Head from "next/head";
 // import Date from "../../components/date";
 // import { getAllPostIds, getPostData } from "../../lib/posts";
 
-// import utilStyles from "../../styles/utils.module.scss";
+import character from "../../styles/character.module.scss";
 import getCharactersData from "../../utils/getCharactersData";
 
 import {
@@ -40,6 +40,45 @@ export default function Post({
         <meta property="og:site_name" content={siteNeme}/>
         <meta property="fb:app_id" content={app_id} />
       </Head>
+      <div 
+        className="w-screen h-screen bg-no-repeat bg-cover bg-center box-border p-2"
+        style={{
+          backgroundImage: "url(" + siteUrl + "/images/" + characterData.class + "/background.jpg" + ")"
+        }}
+      >
+        <main 
+          className="block w-full max-w-2xl mt-2 mb-2 p-4 m-auto"
+          style={{
+            backgroundImage: "url(" + siteUrl + "/images/pergament.jpg" + ")"
+          }}
+        >
+          <figure>
+            <img 
+              className="w-1/2 m-auto"
+              src={siteUrl + '/images/' + characterData.class + '/model.png'}
+              alt={characterData.name}
+              title={characterData.name}
+            />
+            <figcaption className="mt-2 text-center text-xl">Lv.{characterData.level + ' ' + characterData.name + ' - ' + characterData.title}</figcaption>
+          </figure>
+
+          <section>
+            <h1 className="text-3xl">
+              {characterData.name}的冒險故事
+            </h1>
+            <p
+              className={"text-xl " + character.article_container}
+              dangerouslySetInnerHTML={{
+                __html: characterData.story
+              }}
+            />
+          </section>
+
+          <section>
+            
+          </section>
+        </main>
+      </div>
     </>
   );
 }
@@ -68,6 +107,10 @@ export async function getStaticProps({ params }) {
       break;
     }
   }
+
+  characterData.story = characterData.story.replace(/<br>/g, "</span><span>");
+
+  characterData.story = "<span>" + characterData.story + "</span>"
 
   return {
     props: {

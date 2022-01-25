@@ -50,7 +50,7 @@ export default function Post({
         <main 
           className={`
             block w-full max-w-2xl mt-2 mb-2 p-4 m-auto rounded-xl 
-            lg:inline-block lg:align-middle lg:text-left lg:max-w-[75%] 
+            lg:inline-block lg:align-middle lg:text-left lg:max-w-[75%] lg:mr-14
             ` + characterStyle.bg_pergament}
         >
           <figure

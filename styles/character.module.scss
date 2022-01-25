@@ -1,7 +1,10 @@
 .article_container {
   span {
     display: block;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
   }
+}
+
+.bg_pergament {
+  background-image: url(../public/images/pergament.jpg);
 }

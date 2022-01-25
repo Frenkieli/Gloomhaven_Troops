@@ -3,7 +3,7 @@ import Head from "next/head";
 // import Date from "../../components/date";
 // import { getAllPostIds, getPostData } from "../../lib/posts";
 
-import character from "../../styles/character.module.scss";
+import characterStyle from "../../styles/character.module.scss";
 import getCharactersData from "../../utils/getCharactersData";
 
 import {
@@ -41,41 +41,44 @@ export default function Post({
         <meta property="fb:app_id" content={app_id} />
       </Head>
       <div 
-        className="w-full h-screen overflow-auto bg-no-repeat bg-cover bg-center box-border p-2 select-none"
+        className="relative w-full h-screen overflow-auto bg-no-repeat bg-cover bg-center p-2 select-none
+          before:lg:inline-block before:lg:h-full before:lg:w-0 before:lg:align-middle lg:text-right"
         style={{
           backgroundImage: "url(" + siteUrl + "/images/" + characterData.class + "/background.jpg" + ")"
         }}
       >
         <main 
-          className="block w-full max-w-2xl mt-2 mb-2 p-4 m-auto"
-          style={{
-            backgroundImage: "url(" + siteUrl + "/images/pergament.jpg" + ")"
-          }}
+          className={`
+            block w-full max-w-2xl mt-2 mb-2 p-4 m-auto rounded-xl 
+            lg:inline-block lg:align-middle lg:text-left lg:max-w-[75%] 
+            ` + characterStyle.bg_pergament}
         >
-          <figure>
+          <figure
+            className="lg:fixed lg:bottom-0 lg:left-0"
+          >
             <img 
-              className="w-1/2 m-auto"
+              className="w-1/2 m-auto lg:w-3/4"
               src={siteUrl + '/images/' + characterData.class + '/model.png'}
               alt={characterData.name}
               title={characterData.name}
             />
-            <figcaption className="mt-2 text-center text-xl">Lv.{characterData.level + ' ' + characterData.name + ' - ' + characterData.title}</figcaption>
+            <figcaption className="mt-2 text-center text-xl mb-3 hidden"> <h2>{characterData.class + ' - ' + characterData.title}</h2></figcaption>
           </figure>
 
           <section>
             <h1 className="text-3xl">
-              {characterData.name}的冒險故事
+              
+              Lv.{characterData.level + ' ' + characterData.name}
+              <span className="text-xl ml-2.5">
+                <strong>{characterData.title}</strong><em>({characterData.class})</em>
+              </span>
             </h1>
             <p
-              className={"text-xl " + character.article_container}
+              className={"text-xl " + characterStyle.article_container}
               dangerouslySetInnerHTML={{
                 __html: characterData.story
               }}
             />
-          </section>
-
-          <section>
-            
           </section>
         </main>
       </div>

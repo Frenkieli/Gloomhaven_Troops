@@ -8,6 +8,9 @@ import {
   siteUrl,
   app_id
 } from "../constants";
+
+import GTMElement from "../components/GTMElement";
+
 export default function Home({characterList}) {
   return (
     <>
@@ -32,6 +35,7 @@ export default function Home({characterList}) {
         <meta property="og:site_name" content={siteNeme} />
         <meta property="fb:app_id" content={app_id} />
       </Head>
+      <GTMElement/>
     </>
   );
 }

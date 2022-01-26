@@ -14,6 +14,8 @@ import {
   app_id
 } from "../../constants";
 
+import GTMElement from "../../components/GTMElement";
+
 export default function Post({ 
   characterData
 }) {
@@ -40,6 +42,7 @@ export default function Post({
         <meta property="og:site_name" content={siteNeme}/>
         <meta property="fb:app_id" content={app_id} />
       </Head>
+      <GTMElement/>
       <div 
         className="relative w-full h-screen overflow-auto bg-no-repeat bg-cover bg-center p-2 select-none
           before:lg:inline-block before:lg:h-full before:lg:w-0 before:lg:align-middle lg:text-right"

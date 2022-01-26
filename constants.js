@@ -6,3 +6,5 @@ export const siteDescription = "幽暗港內一群傭兵正默默的活動著，
 export const siteUrl = "https://frenkieli.github.io/Gloomhaven_Troops";
 
 export const app_id = "674189663950207";
+
+export const GTMID = "GTM-PVD92NV";

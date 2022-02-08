@@ -10,8 +10,23 @@ import {
 } from "../constants";
 
 import GTMElement from "../components/GTMElement";
+import { useEffect } from "react";
+
+import { Base3dClass } from "../threejs/base";
+
+// let camera, scene, renderer;
+// let geometry, material, mesh;
 
 export default function Home({characterList}) {
+
+  useEffect(()=>{
+    let gloomhavenhaven3D = new Base3dClass(document.getElementById('gloomhaven'));
+    // console.log('initScene')
+    gloomhavenhaven3D.init();
+    gloomhavenhaven3D.initTool();
+  }, []);
+  
+
   return (
     <>
       <Head>
@@ -36,6 +51,9 @@ export default function Home({characterList}) {
         <meta property="fb:app_id" content={app_id} />
       </Head>
       <GTMElement/>
+      <div className="container">
+        <canvas id="gloomhaven"/>
+      </div>
     </>
   );
 }

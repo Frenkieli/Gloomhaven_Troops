@@ -2,6 +2,12 @@ import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import Stats from "stats-js";
 
+// import 
+
+const loader = new THREE.TextureLoader();
+const height = loader.load('./three/normalmap/4_stonilyland.jpg');
+const textrue = loader.load('./three/textrue/4_stonilyland.jpg');
+
 /**
  * @description base three object
  *
@@ -33,18 +39,14 @@ export class Base3dClass {
     this.initScene();
     this.initCamera();
     window.addEventListener("resize", this.resizeTHREE.bind(this));
-    let light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(1, 1, 5);
-
+    let light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(0, 0, 100);
+    let directionalLightHelper = new THREE.DirectionalLightHelper(
+      light
+    )
     this.scene.add(light);
+    this.scene.add(directionalLightHelper);
 
-    const geometry = new THREE.CylinderGeometry( 5, 5, 1, 6 );
-    const material = new THREE.MeshStandardMaterial( {color: 0xffff00} );
-    const cylinder = new THREE.Mesh( geometry, material );
-    
-    cylinder.rotation.x = Math.PI / 2;
-
-    this.scene.add( cylinder );
     this.initRenderer();
   }
 
@@ -57,9 +59,9 @@ export class Base3dClass {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      3000
     );
-    this.camera.position.set(0, 0, 30);
+    this.camera.position.set(0, -420, 420);
     this.camera.aspect = this.sizes.width / this.sizes.height;
     this.camera.lookAt(this.scene.position);
 
@@ -79,6 +81,8 @@ export class Base3dClass {
   }
 
   initTool() {
+    const axesHelper = new THREE.AxesHelper( 99999 );
+    this.scene.add( axesHelper );
     this.stats = new Stats();
     this.stats.setMode(0);
     let stateBox = document.createElement("div");

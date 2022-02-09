@@ -14,3 +14,7 @@ C 夜德 => ?? 道具店店長 買大量物品
 
 D 愛庭 => ?? 祈禱12次  
 D 銀 => ?? 幫助隊友退休 2 次
+
+## 法線地圖產生器
+
+https://cpetry.github.io/NormalMap-Online/

@@ -13,6 +13,7 @@ import GTMElement from "../components/GTMElement";
 import { useEffect } from "react";
 
 import { Base3dClass } from "../threejs/base";
+import { Topography } from "../threejs/topography";
 
 // let camera, scene, renderer;
 // let geometry, material, mesh;
@@ -20,10 +21,12 @@ import { Base3dClass } from "../threejs/base";
 export default function Home({characterList}) {
 
   useEffect(()=>{
-    let gloomhavenhaven3D = new Base3dClass(document.getElementById('gloomhaven'));
+    let gloomhaven3D = new Base3dClass(document.getElementById('gloomhaven'));
     // console.log('initScene')
-    gloomhavenhaven3D.init();
-    gloomhavenhaven3D.initTool();
+    gloomhaven3D.init();
+    gloomhaven3D.initTool();
+    let gloomhavenTopography = new Topography(gloomhaven3D);
+    gloomhavenTopography.setTopography('construct');
   }, []);
   
 

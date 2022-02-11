@@ -1,12 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import Stats from "stats-js";
-
-// import 
-
-const loader = new THREE.TextureLoader();
-const height = loader.load('./three/normalmap/4_stonilyland.jpg');
-const textrue = loader.load('./three/textrue/4_stonilyland.jpg');
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 /**
  * @description base three object
@@ -45,13 +40,25 @@ export class Base3dClass {
     this.initLoadingManager();
     this.initLoader();
     window.addEventListener("resize", this.resizeTHREE.bind(this));
-    let light = new THREE.DirectionalLight(0xffffff, 1);
+    let light = new THREE.PointLight(0xffffff, 3);
     light.position.set(0, 0, 100);
-    let directionalLightHelper = new THREE.DirectionalLightHelper(
-      light
-    )
+    // let directionalLightHelper = new THREE.DirectionalLightHelper(
+    //   light
+    // )
     this.scene.add(light);
-    this.scene.add(directionalLightHelper);
+    // this.scene.add(directionalLightHelper);
+
+    // our mindthief
+
+    this.loader['gltfLoader'].load('./3dmodel/mindthief.gltf', (gltf) => {
+      gltf.scene.scale.x = 30;
+      gltf.scene.scale.y = 30;
+      gltf.scene.scale.z = 30;
+      gltf.scene.position.z = 90;
+      gltf.scene.position.y = 90;
+      gltf.scene.rotation.x = Math.PI / 2;
+      this.scene.add(gltf.scene);
+    })
 
     this.initRenderer();
   }
@@ -106,6 +113,7 @@ export class Base3dClass {
 
   initLoader() {
     this.loader['textrue'] = new THREE.TextureLoader(this.loadingManager);
+    this.loader['gltfLoader'] = new GLTFLoader(this.loadingManager);
   }
 
   initTool() {

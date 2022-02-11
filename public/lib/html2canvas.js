@@ -6708,8 +6708,7 @@
             else {
                 var letters = segmentGraphemes(text.text);
                 letters.reduce(function (left, letter) {
-                    // 這邊只能先這樣了，沒救 = =
-                    _this.ctx.fillText(letter, left, text.bounds.top + baseline * 0.85);
+                    _this.ctx.fillText(letter, left, text.bounds.top + baseline);
                     return left + _this.ctx.measureText(letter).width;
                 }, text.bounds.left);
             }
@@ -6737,6 +6736,7 @@
                     this.ctx.font = font;
                     this.ctx.direction = styles.direction === 1 /* RTL */ ? 'rtl' : 'ltr';
                     this.ctx.textAlign = 'left';
+                    this.ctx.textBaseline = 'alphabetic';
                     _b = this.fontMetrics.getMetrics(fontFamily, fontSize), baseline = _b.baseline, middle = _b.middle;
                     paintOrder = styles.paintOrder;
                     text.textBounds.forEach(function (text) {
@@ -7827,4 +7827,3 @@
     return html2canvas;
 
 })));
-//# sourceMappingURL=html2canvas.js.map

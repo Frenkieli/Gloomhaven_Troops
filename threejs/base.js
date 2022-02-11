@@ -20,14 +20,18 @@ export class Base3dClass {
   camera = null;
   renderer = null;
   stats = null;
+  loader = {};
+  loadingManager = null;
+  setProgress= null;
 
   sizes = {
     width: window.innerWidth,
     height: window.innerHeight,
   };
 
-  constructor(canvasElement) {
+  constructor(canvasElement, setProgress) {
     this.canvasElement = canvasElement;
+    this.setProgress = setProgress;
   }
 
   /**
@@ -38,6 +42,8 @@ export class Base3dClass {
   init() {
     this.initScene();
     this.initCamera();
+    this.initLoadingManager();
+    this.initLoader();
     window.addEventListener("resize", this.resizeTHREE.bind(this));
     let light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(0, 0, 100);
@@ -78,6 +84,28 @@ export class Base3dClass {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
     this.render();
+  }
+
+  initLoadingManager() {
+    let vm = this;
+    this.loadingManager = new THREE.LoadingManager();
+    this.loadingManager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+      console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    };
+    this.loadingManager.onLoad = function ( ) {
+      console.log( 'Loading complete!');
+    };
+    this.loadingManager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+      vm.setProgress(itemsLoaded / itemsTotal * 100);
+      console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    };
+    this.loadingManager.onError = function ( url ) {
+      console.log( 'There was an error loading ' + url );
+    };
+  }
+
+  initLoader() {
+    this.loader['textrue'] = new THREE.TextureLoader(this.loadingManager);
   }
 
   initTool() {

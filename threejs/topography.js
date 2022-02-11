@@ -2,21 +2,19 @@ import * as THREE from "three";
 import materialJson from "./materialJson.json";
 
 export class Topography {
-  loader = null;
   mainTHREE = null;
   material = {};
   constructor(main) {
-    this.loader = new THREE.TextureLoader();
 
     this.mainTHREE = main;
     for (let i = 0; i < materialJson.length; i++) {
       const materiaStr = materialJson[i].split("_");
       this.material[materiaStr[0]] = {
         name: materiaStr[1],
-        textrue: this.loader.load(
+        textrue: main.loader.textrue.load(
           "./three/textrue/" + materialJson[i] + ".jpg"
         ),
-        normalMap: this.loader.load(
+        normalMap: main.loader.textrue.load(
           "./three/normalmap/" + materialJson[i] + ".jpg"
         ),
       };

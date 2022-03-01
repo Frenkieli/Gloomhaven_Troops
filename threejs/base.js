@@ -40,23 +40,19 @@ export class Base3dClass {
     this.initLoadingManager();
     this.initLoader();
     window.addEventListener("resize", this.resizeTHREE.bind(this));
-    let light = new THREE.PointLight(0xffffff, 3);
-    light.position.set(0, 0, 100);
-    // let directionalLightHelper = new THREE.DirectionalLightHelper(
-    //   light
-    // )
-    this.scene.add(light);
-    // this.scene.add(directionalLightHelper);
 
-    // our mindthief
-
-    this.loader['gltfLoader'].load('./3dmodel/mindthief.gltf', (gltf) => {
+    this.loader['gltfLoader'].load('./3dmodel/beast_tyrant.gltf', (gltf) => {
       gltf.scene.scale.x = 30;
       gltf.scene.scale.y = 30;
       gltf.scene.scale.z = 30;
       gltf.scene.position.z = 90;
       gltf.scene.position.y = 90;
       gltf.scene.rotation.x = Math.PI / 2;
+      gltf.scene.traverse( function( node ) {
+
+        if ( node.isMesh ) { node.castShadow = true; }
+
+    } );
       this.scene.add(gltf.scene);
     })
 
@@ -140,7 +136,7 @@ export class Base3dClass {
     // Update renderer
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    console.log(this);
+    // console.log(this);
   }
 
   render() {

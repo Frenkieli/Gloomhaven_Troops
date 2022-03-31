@@ -14,6 +14,7 @@ import GTMElement from "../components/GTMElement";
 
 import { Base3dClass } from "../threejs/base";
 import { Topography } from "../threejs/topography";
+import { Mercenary } from "../threejs/mercenary";
 
 import indexStyle from "../styles/index.module.scss";
 
@@ -38,6 +39,7 @@ export default function Home({characterList}) {
     gloomhaven3D.initTool();
     let gloomhavenTopography = new Topography(gloomhaven3D);
     gloomhavenTopography.setTopography('construct');
+    let gloomhavenMercenary = new Mercenary(gloomhaven3D, gloomhavenTopography);
   }, []);
 
   useEffect(()=>{

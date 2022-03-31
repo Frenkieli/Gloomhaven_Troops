@@ -167,8 +167,8 @@
         },
         {
             "mimeType" : "image/jpeg",
-            "name" : "Spellweaver",
-            "uri" : "Spellweaver.jpg"
+            "name" : "spellweaver",
+            "uri" : "spellweaver.jpg"
         }
     ],
     "accessors" : [

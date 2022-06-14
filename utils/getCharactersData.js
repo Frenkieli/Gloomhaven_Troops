@@ -1,25 +1,15 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
+import { sheetUrl } from "../config/config";
+import sheetDataHandler from "./sheetDataHandler";
+
 export default async function getCharactersData () {
-  const data = await fetch(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQTvEcYpFz386IGwqKkDan9iMsqaPZqFrfVTdYTTvJwCzzXVG4KP0EE2tQZjyE7X3JMx70E5BnDZgR8/pub?output=csv"
-  )
+  const data = await fetch(sheetUrl.member)
     .then((res) => {
       return res.text();
     })
     .then((data) => {
-      const lines = data.split("\n");
-      let outData = [];
-      let keys = lines[0].split(",");
-      for (let i = 1; i < lines.length; i++) {
-        let character = {};
-        let characterRawData = lines[i].split(",");
-        for (let k = 0; k < keys.length; k++) {
-          character[keys[k].replace('\r', '')] = characterRawData[k].replace('\r', '');
-        }
-        outData.push(character);
-      }
-      return outData;
+      return sheetDataHandler(data);
     });
   return data;
 }

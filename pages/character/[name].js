@@ -57,7 +57,7 @@ export default function Post({
             ` + characterStyle.bg_pergament}
         >
           <figure
-            className="lg:fixed lg:bottom-0 lg:left-0"
+            className="flex items-end lg:fixed lg:bottom-0 lg:left-0 lg:w-96"
           >
             <img 
               className="w-1/2 m-auto lg:w-3/4"
@@ -68,6 +68,17 @@ export default function Post({
               alt={characterData.name}
               title={characterData.name}
             />
+            { characterData.class === 'beast_tyrant' ? (
+              <img 
+                className="w-1/2"
+                style={{
+                  filter: `drop-shadow(0 0 20px ${characterData.color})`
+                }}
+                src={siteUrl + '/images/' + characterData.class + '/model2.png'}
+                alt={characterData.name}
+                title={characterData.name}
+              />
+            ) : ''}
             <figcaption className="mt-2 text-center text-xl mb-3 hidden"> <h2>{characterData.class + ' - ' + characterData.title}</h2></figcaption>
           </figure>
 
@@ -79,7 +90,7 @@ export default function Post({
               </span>
             </h1>
             <p className="text-lg">
-              參與冒險：{characterData.start} - {characterData.end} ({characterData.during}場)
+              參與冒險：{characterData.start} - {characterData.end || '冒險中'}{characterData.during >= 0 ? ` (${characterData.during}場)` : ''}
               <span className="text-sm ml-1">
                 ({characterData.player})
               </span>

@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { sheetUrl } from "../config/config";
+import { sheetUrl } from "../constants";
 import sheetDataHandler from "./sheetDataHandler";
 
 export default async function getCharactersData () {

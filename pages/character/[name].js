@@ -61,6 +61,9 @@ export default function Post({
           >
             <img 
               className="w-1/2 m-auto lg:w-3/4"
+              style={{
+                filter: `drop-shadow(0 0 20px ${characterData.color})`
+              }}
               src={siteUrl + '/images/' + characterData.class + '/model.png'}
               alt={characterData.name}
               title={characterData.name}
@@ -70,12 +73,17 @@ export default function Post({
 
           <section>
             <h1 className="text-3xl">
-              
               Lv.{characterData.level + ' ' + characterData.name}
               <span className="text-xl ml-2.5">
                 <strong>{characterData.title}</strong><em>({characterData.class})</em>
               </span>
             </h1>
+            <p className="text-lg">
+              參與冒險：{characterData.start} - {characterData.end} ({characterData.during}場)
+              <span className="text-sm ml-1">
+                ({characterData.player})
+              </span>
+            </p>
             <p
               className={"text-xl " + characterStyle.article_container}
               dangerouslySetInnerHTML={{

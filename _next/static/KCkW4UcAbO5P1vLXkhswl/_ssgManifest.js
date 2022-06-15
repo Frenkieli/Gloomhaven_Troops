@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002F","\u002Fcharacter\u002F[name]","\u002Fprogress\u002F[progress]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

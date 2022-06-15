@@ -41,21 +41,6 @@ export class Base3dClass {
     this.initLoader();
     window.addEventListener("resize", this.resizeTHREE.bind(this));
 
-    this.loader['gltfLoader'].load('./3dmodel/beast_tyrant.gltf', (gltf) => {
-      gltf.scene.scale.x = 30;
-      gltf.scene.scale.y = 30;
-      gltf.scene.scale.z = 30;
-      gltf.scene.position.z = 90;
-      gltf.scene.position.y = 90;
-      gltf.scene.rotation.x = Math.PI / 2;
-      gltf.scene.traverse( function( node ) {
-
-        if ( node.isMesh ) { node.castShadow = true; }
-
-    } );
-      this.scene.add(gltf.scene);
-    })
-
     this.initRenderer();
   }
 
@@ -68,9 +53,9 @@ export class Base3dClass {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      3000
+      1000
     );
-    this.camera.position.set(0, -420, 420);
+    this.camera.position.set(0, -300, 320);
     this.camera.aspect = this.sizes.width / this.sizes.height;
     this.camera.lookAt(this.scene.position);
 
@@ -144,6 +129,7 @@ export class Base3dClass {
     if(this.stats) {
       this.stats.update()
     }
+    this.renderer.setClearColor( 0x000000, 0.9);
     this.renderer.render(this.scene, this.camera);
   }
 

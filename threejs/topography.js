@@ -13,21 +13,24 @@ export class Topography {
       this.material[materiaStr[0]] = {
         name: materiaStr[1],
         textrue: main.loader.textrue.load(
-          "./three/textrue/" + materialJson[i] + ".jpg"
+          "../three/textrue/" + materialJson[i] + ".jpg"
         ),
         normalMap: main.loader.textrue.load(
-          "./three/normalmap/" + materialJson[i] + ".jpg"
+          "../three/normalmap/" + materialJson[i] + ".jpg"
         ),
       };
     }
   }
 
-  // 公式是依照中心往左右扣除範圍
+  /**
+   * 地形排列公式是依照中心往左右去偏移
+   * 
+   */
   setTopography(type) {
     this.hexMatrix = [];
     const r = 25;
     const h = r * Math.sqrt(3);
-    const { hexDesc, lightDesc } = this.topographyDescription[type];
+    const { hexDesc } = this.topographyDescription[type];
 
     let verticalHight = 2 * h + (hexDesc.length - 1) * h;
     hexDesc.forEach((horizontal, verticalLine) => {
@@ -37,31 +40,21 @@ export class Topography {
       horizontal.forEach((hexType, horizontalLine) => {
         let x = -(2 * r + horizontalLine * 6 * r) + horizontalHight / 2;
         const hex = this.createHex(hexType, r);
-        hex.position.set(x, y, 0);
+        hex.position.set(x, y, Math.random() * 40);
         this.hexMatrix[verticalLine].push(hex);
         this.mainTHREE.scene.add(hex);
       });
     });
 
-    lightDesc.forEach(data => {
-      let light = this.createLight(data);
-      let position;
-      if(Array.isArray(data.position[0])) {
-        position = this.hexMatrix[data.position[0][0]][data.position[0][1]].position;
-        console.log(position)
-      } else {
-        position= {
-          x: data.position[0].x,
-          y: data.position[0].y,
-        }
-      }
+    this.light = this.createLight();
+    
+    let lightHelper = new THREE.SpotLightHelper(this.light);
+    this.mainTHREE.scene.add(this.light);
+    this.mainTHREE.scene.add(lightHelper);
 
-      light.position.set(position.x, position.y, data.position[1]);
-      
-      let lightHelper = new THREE.PointLightHelper(light);
-      this.mainTHREE.scene.add(light);
-      this.mainTHREE.scene.add(lightHelper);
-    })
+    const hemiLight = new THREE.DirectionalLight(0xffffff, 1);
+    hemiLight.position.set(0, -400, 380);
+    this.mainTHREE.scene.add(hemiLight);
   }
 
   createHex(type, r) {
@@ -78,55 +71,28 @@ export class Topography {
     return cylinder;
   }
 
-  createLight(data) {
-    let light = new THREE.PointLight(...data.color);
+  createLight() {
+    let light = new THREE.SpotLight(0xffffff, 2, 990, 0.5, 1, 0.3);
     light.castShadow = true;
+
+    light.position.set(0, -400, 380);
     return light;
   }
 
   topographyDescription = {
     construct: {
-      lightDesc: [
-        // {
-        //   color: [0xffffff, 2, 2000, 2],
-        //   position: [[0, 0], 300]
-        // },
-        // {
-        //   color: [0xffffff, 1, 2000, 2],
-        //   position: [[0, 4], 300]
-        // },
-        // {
-        //   color: [0xffffff, 1, 2000, 2],
-        //   position: [[17, 0], 300]
-        // },
-        // {
-        //   color: [0xffffff, 1, 2000, 2],
-        //   position: [[17, 5], 300]
-        // },
-        {
-          color: [0xffffff, 2, 3000, 2],
-          position: [{x:0, y:0}, 260]
-        },
-      ],
       hexDesc: [
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1],
-        [2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2, 2],
-        [3, 3, 3, 3, 3],
-        [3, 3, 3, 3, 3, 3],
-        [4, 4, 4, 4, 4],
-        [4, 4, 4, 4, 4, 4],
-        [5, 5, 5, 5, 5], // 正中心點
-        [5, 5, 5, 5, 5, 5], // 正中心點
-        [6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6],
-        [7, 7, 7, 7, 7],
-        [7, 7, 7, 7, 7, 7],
-        [8, 8, 8, 8, 8],
-        [8, 8, 8, 8, 8, 8],
-        [9, 9, 9, 9, 9],
-        [9, 9, 9, 9, 9, 9],
+        [1, 1, 1],
+        [1, 1, 1, 1],
+        [2, 2, 2],
+        [2, 2, 2, 2],
+        [3, 3, 3],
+        [3, 3, 3, 3],
+        [4, 4, 4],
+        [4, 4, 4, 4],
+        [5, 5, 5],
+        [5, 5],
+        [6],
       ],
     },
   };

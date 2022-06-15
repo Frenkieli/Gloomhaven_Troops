@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
-import getCharactersData from "../utils/getCharactersData";
+import getCharactersData from "../../utils/getCharactersData";
 import {
   siteAuthor,
   siteCopyright,
@@ -8,18 +8,18 @@ import {
   siteDescription,
   siteUrl,
   app_id
-} from "../constants";
+} from "../../constants";
 
-import GTMElement from "../components/GTMElement";
+import GTMElement from "../../components/GTMElement";
 
-import { Base3dClass } from "../threejs/base";
-import { Topography } from "../threejs/topography";
-import { Mercenary } from "../threejs/mercenary";
+import { Base3dClass } from "../../threejs/base";
+import { Topography } from "../../threejs/topography";
+import { Mercenary } from "../../threejs/mercenary";
 
-import indexStyle from "../styles/index.module.scss";
+import indexStyle from "../../styles/index.module.scss";
 
 import Script from "next/script";
-import getProgressData from "../utils/getProgressData";
+import getProgressData from "../../utils/getProgressData";
 
 export default function Home({progressData}) {
   const coverRef = useRef();
@@ -143,7 +143,7 @@ export default function Home({progressData}) {
         <meta property="og:site_name" content={siteNeme} />
         <meta property="fb:app_id" content={app_id} />
       </Head>
-      <Script src="./lib/html2canvas.js"></Script>
+      <Script src="../lib/html2canvas.js"></Script>
       <GTMElement/>
       <div
         ref={ coverRef }
@@ -159,8 +159,8 @@ export default function Home({progressData}) {
         "
         >
           <h1 className="text-4xl md:text-7xl font-black leading-9 md:leading-normal">gloomhaven</h1>
-          <h2 className="text-3xl md:text-6xl font-black leading-9 md:leading-normal">{progressData.name}</h2>
           <h3 className="text-xl md:text-3xl font-medium leading-9 md:leading-normal">{siteNeme}</h3>
+          <h2 className="text-3xl md:text-6xl font-black leading-9 md:leading-normal">{progressData.name}</h2>
           <div 
               ref={progressRef}
             className="
@@ -216,10 +216,26 @@ export default function Home({progressData}) {
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
+  const paths = await getProgressData();
+
+  for(let i = 0 ; i < paths.length ; i++) {
+    paths[i] = {
+      params: paths[i]
+    }
+  }
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({params}) {
+
   const rawProgressData = await getProgressData();
   const characterList = await getCharactersData();
-  let progressData = rawProgressData[0];
+  let progressData = rawProgressData[params.progress - 1];
   let member = progressData.member.split('_');
 
   member.splice(member.indexOf(progressData.mvp), 1);

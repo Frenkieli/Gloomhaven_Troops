@@ -15,7 +15,6 @@ class MyDocument extends Document {
     return (
       <Html
         lang="zh-tw"
-        className="bg-orange-300"
       >
         <Head prefix="my_namespace: https://ogp.me/ns/article#">
         <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=New+Tegomin&display=swap" rel="stylesheet"/>

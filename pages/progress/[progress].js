@@ -127,7 +127,7 @@ export default function Home({progressData}) {
         <link rel="shortcut icon" href={ siteUrl + '/images/icon.jpg'}/>
         {/* 手機用 icon -precomposed 意思是說不要反光*/}
         <link rel="apple-touch-icon-precomposed" sizes="192x192" href={siteUrl + '/images/icon.jpg'}/>
-        <title>{siteNeme}</title>
+        <title>{progressData.name} ： {siteNeme}</title>
         <meta name="author" content={siteAuthor}/>
         <meta name="copyright" content={siteCopyright}/>
         <meta name="name" content={siteNeme}/>

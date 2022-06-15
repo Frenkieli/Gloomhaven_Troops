@@ -23,8 +23,18 @@ export class Topography {
   }
 
   /**
-   * 地形排列公式是依照中心往左右去偏移
-   * 
+   * 地形建造公式
+   * r 半徑 - 2(間隔)
+   * 地形中心點位置公式
+   * 1 1 1
+   *  2 2
+   * [r, r] [3r, r] [5r r]
+   *   [2r, 2r]  [4r 2r]
+   * 地形偏移公式是依照中心往左右去偏移
+   * 總 r 除以二
+   * 流程
+   * 先以 0 0 為中心點畫出地形的地形位置
+   * 而後偏移一個算好的整體偏移
    */
   setTopography(type) {
     this.hexMatrix = [];
@@ -54,7 +64,10 @@ export class Topography {
 
     const hemiLight = new THREE.DirectionalLight(0xffffff, 1);
     hemiLight.position.set(0, -400, 380);
+    
+    let hemiLightHelper = new THREE.DirectionalLightHelper(hemiLight);
     this.mainTHREE.scene.add(hemiLight);
+    this.mainTHREE.scene.add(hemiLightHelper);
   }
 
   createHex(type, r) {
